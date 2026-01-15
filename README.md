@@ -29,6 +29,3 @@ I'm a passionate **Frontend Developer** with hands-on experience in building res
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/anupkankale/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:yanupkankaleak47@gmail.com)
 
----
-
-_Thanks for stopping by! ⭐_
