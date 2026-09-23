@@ -1,0 +1,427 @@
+<title>Anup Kankale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --ground:#0D1017;
+  --surface:#131824;
+  --line:#252D3E;
+  --text:#D6DCE6;
+  --muted:#8490A6;
+  --accent:#7D93FF;   /* lifted WordPress admin blue */
+  --accent-deep:#3858E9;
+  --ok:#6FCF97;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{overflow-x:clip}
+main,section,.hero>*{min-width:0}
+body{
+  margin:0;background:var(--ground);color:var(--text);
+  font:14px/1.65 var(--mono);
+  padding-inline:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px dashed color-mix(in srgb,var(--accent) 45%,transparent)}
+a:hover{color:#fff;border-bottom-color:#fff}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin-inline:auto}
+.muted{color:var(--muted)}
+.acc{color:var(--accent)}
+.ok{color:var(--ok)}
+
+/* ---------- top bar ---------- */
+.bar{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:5;
+  background:color-mix(in srgb,var(--ground) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  margin-inline:-16px;padding:10px 16px;
+}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;justify-content:space-between}
+.prompt{color:var(--muted);white-space:nowrap}
+.prompt b{color:var(--ok);font-weight:500}
+.bar nav{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px}
+.bar nav a{border:0;color:var(--muted)}
+.bar nav a::before{content:"./";color:var(--line)}
+.bar nav a:hover{color:var(--text)}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 48px;
+  align-items:center;padding-block:56px 40px;
+}
+.fit{width:100%;overflow:hidden;position:relative}
+.fit>pre{position:absolute;top:0;left:0;transform-origin:0 0;margin:0;white-space:pre;letter-spacing:0}
+.figlet{color:var(--text);font-size:12px;line-height:1.05}
+.fit.name{max-width:440px}
+.figlet .k{color:var(--accent)}
+.role{font-size:clamp(15px,2.2vw,19px);font-weight:500;margin:26px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);max-width:52ch;margin:0 0 22px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none;font-size:12.5px}
+.tags li{border:1px solid var(--line);padding:2px 10px;color:var(--text)}
+.tags li::before{content:"[";color:var(--muted)} .tags li::after{content:"]";color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-block;border:1px solid var(--accent);padding:9px 16px;
+  color:var(--ground);background:var(--accent);font-weight:700;font-size:13px;
+}
+.btn:hover{background:#fff;border-color:#fff;color:var(--ground)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.ghost:hover{color:var(--ground);background:#fff}
+
+.portrait-box{position:relative;border:1px solid var(--line);padding:18px 12px 12px;background:var(--ground);min-width:0;width:100%}
+.portrait-box .cap{
+  position:absolute;top:-10px;left:12px;background:var(--ground);padding:0 6px;
+  font-size:11px;color:var(--muted)
+}
+.portrait{color:var(--text);font-size:10px;line-height:1}
+.portrait-box .fit{max-width:560px;margin-inline:auto}
+
+/* ---------- sections ---------- */
+section{padding-block:44px;border-top:1px dashed var(--line)}
+.cmd{margin:0 0 22px;font-size:13px;color:var(--muted)}
+.cmd b{color:var(--ok);font-weight:500}
+.cmd span{color:var(--text)}
+h2{
+  font-size:clamp(20px,3vw,26px);margin:0 0 20px;font-weight:700;letter-spacing:-.01em;text-wrap:balance
+}
+h2::before{content:"## ";color:var(--accent)}
+
+.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px 48px}
+.about p{margin:0 0 14px;max-width:62ch}
+blockquote{
+  margin:0;padding:18px 20px;border:1px solid var(--line);background:var(--surface);
+  font-style:italic;color:var(--text);align-self:start
+}
+blockquote::before{content:"/*";display:block;color:var(--muted);font-style:normal}
+blockquote::after{content:"*/";display:block;color:var(--muted);font-style:normal}
+.facts{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:4px;font-size:13px}
+.facts li span{color:var(--muted);display:inline-block;min-width:11ch}
+
+/* services as wp-cli output */
+.table-scroll{overflow-x:auto}
+.cli{border:1px solid var(--line);background:var(--surface);min-width:0}
+.cli-row{
+  display:grid;grid-template-columns:minmax(16ch,22ch) 9ch minmax(0,1fr);gap:0 18px;
+  padding:12px 18px;border-top:1px solid var(--line)
+}
+.cli-row:first-child{border-top:0}
+.cli-head{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding-block:9px}
+.cli-row .n{color:var(--text);font-weight:500}
+.cli-row .s{color:var(--ok)}
+.cli-row .d{color:var(--muted)}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:18px}
+.stack div{border-left:1px solid var(--line);padding:2px 0 2px 16px}
+.stack h3{margin:0 0 8px;font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+.stack p{margin:0;color:var(--text);font-size:13px}
+
+/* work */
+.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}
+.proj{border:1px solid var(--line);padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px}
+.proj:hover{border-color:var(--accent-deep)}
+.proj .type{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em}
+.proj h3{margin:0;font-size:16px;line-height:1.35}
+.proj p{margin:0;color:var(--muted);font-size:13px}
+
+/* open source log */
+.log{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.log li{display:grid;grid-template-columns:8ch minmax(0,1fr);gap:14px}
+.log .h{color:#E3B45A}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 48px;align-items:start}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 10px}
+.mail code{font-size:clamp(14px,2.4vw,19px);color:var(--text);user-select:all;word-break:break-all}
+.copy{
+  font:inherit;font-size:12px;background:transparent;color:var(--accent);
+  border:1px solid var(--accent);padding:4px 10px;cursor:pointer
+}
+.copy:hover{background:var(--accent);color:var(--ground)}
+.links{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.links li span{color:var(--muted);display:inline-block;min-width:12ch}
+
+footer{border-top:1px dashed var(--line);padding-block:26px 40px;color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+.cursor{display:inline-block;width:.6em;height:1.05em;background:var(--accent);vertical-align:-2px;margin-left:4px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.cursor{animation:none}html{scroll-behavior:auto}}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:36px 32px}
+  .about,.contact{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .cli-row{grid-template-columns:1fr;gap:2px}
+  .cli-head{display:none}
+  .prompt{display:none}
+}
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="prompt"><b>anup@mumbai</b>:~$ whoami<span class="cursor" aria-hidden="true"></span></span>
+    <nav aria-label="Sections">
+      <a href="#about">about</a><a href="#services">services</a><a href="#stack">stack</a><a href="#work">work</a><a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <div class="fit name"><pre class="figlet" aria-label="Anup Kankale"> █████╗ ███╗   ██╗██╗   ██╗██████╗
+██╔══██╗████╗  ██║██║   ██║██╔══██╗
+███████║██╔██╗ ██║██║   ██║██████╔╝
+██╔══██║██║╚██╗██║██║   ██║██╔═══╝
+██║  ██║██║ ╚████║╚██████╔╝██║
+╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝
+
+<span class="k">██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗ █████╗ ██╗     ███████╗
+██║ ██╔╝██╔══██╗████╗  ██║██║ ██╔╝██╔══██╗██║     ██╔════╝
+█████╔╝ ███████║██╔██╗ ██║█████╔╝ ███████║██║     █████╗
+██╔═██╗ ██╔══██║██║╚██╗██║██╔═██╗ ██╔══██║██║     ██╔══╝
+██║  ██╗██║  ██║██║ ╚████║██║  ██╗██║  ██║███████╗███████╗
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝
+</span></pre></div>
+      <p class="role">WordPress Developer &amp; AI Integration Specialist</p>
+      <p class="lede">WordPress Core contributor in Mumbai. I build fast, accessible WordPress sites and add AI features, like chatbots, content helpers and automations, while keeping the admin simple to use.</p>
+      <ul class="tags">
+        <li>WordPress 7.0 core credit</li>
+        <li>WordPress 7.1 core credit</li>
+        <li>Freelance · Devxpertlabs</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href="#contact">Start a project</a>
+        <a class="btn ghost" href="#work">See the work</a>
+      </div>
+    </div>
+    <figure class="portrait-box" style="margin:0">
+      <span class="cap">portrait_full.txt · 150 cols</span>
+      <div class="fit"><pre class="portrait" aria-label="ASCII portrait of Anup Kankale">
+                                                               ;~***cii+-=ti;
+                                                     -+i+*i*=+i*itt1tLGCCGG88Gt*,
+                                                ,cLLf=++1CGCccGCiL0LCGGCLCf1iftiii=
+                                              -1fcccc1t11fLCc~10CGLftCGLt1ciL1CCLc1+~
+                                            -C1*1~:*itLLfCG0Gc-ffGf111tc1+~++-=~=*i*fc~
+                                          ,i1tc+*11+iictc1Ltft+=*ct1=;-++:,,~=.~==*cc1c**==
+                                         ;=i=~it11ccic1*~~=i**i+-;-==;. .,..,;   ;itf1icc*it=
+                                       -*+:;+=-~++ittciici~::;::;:,.,-;: . . ,   :~i1ft*+***1=;
+                                      ++=+++=~--~++~--=+=~-::.,,.,:;~=ic**=-~:     :~ct1*++itL=+;
+                                     .=+=~~~+c11c1c+~-;;,.:;-~=*1ttLGGGCCG0GCLi;  .  ,-=*+~++t1=1,
+                                     --+=~~~-~~~=~~~;-;:~*1fLCG888#######%%#888G1;.~=;:.:~=~=i1*f;.
+                                    .=-;;-~=~-;-~=+=~+1fC08####%%##%%###%%%%##88Gi~.+ci+~;::--=1L1*;
+                                    :=~;;:::;--;-*icLG8##%%%%%%%%%%%%#%%######8GCf++-c*c**+=;;~+cfc=:
+                                    ;=~;::::.,,ic1fG08#%%%%%%%%%######8888888#80GL1+iii*t==**+~*ctLc+
+                                    :=~,..  -:11tC0088###%%%#%%%###8888000000GGGCf1i*c*-c*+=~*i=*LCL1.
+                                     ~;,   :;~cfGGGG008###%%%######8#8880800GGGGLL1;;+c=;+===~*c*cLf=:
+                                    ,-,   ,,:~1LCGG008##%%%%%%%%%%%%###8880000GGCLLc,.;-::-=~=-1i*iL1=;
+                                    ;:,.  ,::*fLCCG008#8########888800088880#80GGCCfc ..;,::-;=*=i1ffi,
+                                    :,   .:,:cCCG000GGCCCCGG000GCft1c*+++*i1fLC00GCf1*.. ...;;~;-*1f1-
+                                     .   .,::LCCLtci*===+i1fLCCftc+=~;-=*c1tffffC00Ctc;   ....:;-+1+,
+                                          .:;LGf1111cci*+**ictCL1+~-;;;;~=*iic1tfC08Gt+    ,-=+iic~
+                                         .;:-GGf11i++;,,~;;~=C##Cc;,.:+,::=*+i1tC0##80t,~~~*ciic1
+                                           .~0Cf1i*i1++-~;;=tG%@8Lt1i~~+*ic1tCG0888##0G+icii1ttt1=
+                                        cLc+*GGGCGGLtt11tfGGCG%%8CffG0GCCC0###%%%%#88GCcii+ic1fCL~
+                                       ;1ccc1CC0#%%#####%%8LC8@%0GGLfG#%%%%%@@%%%##80CLc*icc*cGLf
+                                       *ciLCcfG888%%%%%%8GG0C088GLC88CCG#%%@@@%%#80GCLti*itftCLC;
+                                       ,LfG1icCG08#%#88CL8C1=*tt*--+tf#8CG8###880GCCCti~=C0CtfC~
+                                        -GGfi+fLG080GCtcLGf:.  :, ..,cC0CtfCGCGCCLfftc=-*G0CGt,
+                                         -GCG**1tLCCft1tLc~;=~--;--~:;+cttc1ffLfft1ci=::=CGf~
+                                          :fC1-ictfLf1c+~*+**+ic*i*+==+~;-~+1CGLtc*+=~:;-.
+                                            :C;~+cfLLc;,;~-=*1L0fC1*++;,. .-*CCti+~~-:::,
+                                              ,:~+ifL=,.:-+fG00GG8#80CLf1=:;~t1i*~-;:,,-,
+                                               ::-=i1+;:=fLfftt1ccc11tLLf*;;-~++=-:...,=
+                                               .,:-=*~~~=ctt1i*=~~=iLC1i+~-;-;--:::,,,.f.
+                                                ,,;;;:;~-=i1c11i+**i1f1+==~:;;;,:..  .iG-
+                                                 ,;:::,-;~+=+i***=++*+~=-:;:;.......:*C8=
+                                                  ,;:,;;:;-~=+~-~==---~;,:.,..,,..:~cfC81
+                                                    ;,,.:,.,;-;::-;;;;:.,. ..,,,:-+1LCG88f:
+                                                     :;:..,..;:,   .:.   ... ,:~*itCG00880fi;
+                                                      ;~::..;:.  ....   ..,-=+*icf008888C0CLCLi:
+                                                       L1*-,.,,..,:,.:-=**icccctC0088##8cLCfG0G0C*:
+                                                      =C0Ct1c*=-;~+ic1111tttttfG8888888f+i1fLLCGGG0GCfc+~.
+                                                  :~ctic080ftfffLLfffLLLLffffL08800888G+*ci1fLGGCGGtfLLCCCL*;
+                                             ,+cLG0Gf1=-G88GfffffLLLCCCLfffC000000GG0C*+ccicLGCCCLCL1ftttttffLftc*=+=-,
+                                        ,=cLGGGLftft1i.;C0000CCCGGGG00GGCC0000GCLLLt+,;*cictLCGCCLLf1tt1ccc1tffffLLLCCCGfci+-:.
+                                   ;+i1fLftfLCGGCfffc~ :+L0000CLCGGGGGCLLG000Cfc+~,   +icc1fCCGGCLfCfctt11ccctttffLLLLCCGCGCGGGGf1*-
+                              -*tCGLt111c1tLCCGGCLf1i; .:;=cLG0CCCCCCLLfff1i=;,..  ..-ic1ttfLCGCLfc+~c1111111111ttfLLCGGCGGGGGGGGGG00Cc+;
+                         -*1LGGGLtccccc111LCGGGCLft1i. .,,,.,:;------;,,........,,:;:*1tttttftfc=-~i1tfft11111t11tfffLCCCGGGGGGCGGGCGGCLLt;
+                   ,=i1CGGGGGCf1cccccc11t1i1LCLffff1* ,-;:::,,.....    ......,:::--,:1fLfffftttt1tttfttttt1t1111ttttffLLLLCCCCGGCLLGCLtcc1t;
+                 ,tLLGGGGGGCfccciiiccc1tttttffLLLLf1-.,-----;;::::::::::::::,::;-:,.cLLLffffLffttttt11f1t1t111tttttttfffffLLLCLLffGCf1iiccct:
+                -CLtGCCGGCLtciiiiiicc111tttfLLLLLLfc.;;;---;;;;;;--~~~-;:,,:;-~;,::-fLLLLLfLfLLLfftfLfcit1t111tttttttttttfffffftcCLtcciiiicc1
+               :CLiCCCCLLt1c1cciiiic111tttfLLLLLLLt+ ;-;-------~~~~~-;;;-~~~=-::;;;*fCLfLLLfttcctLfLft~1fftttttttt11tttttttttt1iLf1i*ic1ccc=c=
+               1Lt1LLLft1ccccc1ciici1tttfffLLLLLLL1; ----~-~~~~~~~--;--~=++=;::;--;1LLLfLLLLCCLCffLLf=iftfttfttttt1t1111111t11*tf1***ic1ftLt*i
+              :ffitffft1cccc11111t1i1fttfLLfLLLCLLc.,-~--~~~~~---;--~===+=~;:;----~fLLLLffLLLfLLLfLL**ttttffffffttt111111cc11cif1i***iiicfCCCf*
+              +tf*tttt11111cc111tttctttfLLLfLLLLLLi :-~~--~---;----~====~-;:;---~;cLLLLCCCLCLLLLLCLt=1ffLLfffftfttttt111cc11i=1tc***iicccctfCCC.
+              ctf+c1t11111cic11tttt1fftfLffLLLLLLf~.;-~---------~~~===~-;::-~--~~;fCLLLLCLCCLLLLCLf~tfffLLLLLLfftttttttt1cci+i1ci*+*iiccc11c1tL+
+             -tt1=c1111111ccc1ttftt1fftLLLLLfLLLL1:,;--------~~~==++=~;::;---~~~:*CCCLCCLCCCCCCLCC=cfLLLLLLfLLfftttttfft1ii*~t1****+*+*ic11tttct~
+             1t1c~icc11111cc11ffffftfLfLLLLLLLCLLc ,-~--------~====~-::;-----~~-,fCCLLCGGGCLLCCCCcifLCCCCLLLLffffffttfft1i*==ti*++*++**icic1tffcc*
+            .ttcc~+i1ttt1111ttfftff1tLffLLLLLLCLLi ,;---------~==~-:::;--~~--~-:~LCLLfCGGGGCGCCCf+fCLCCCCCCLLLfftfffffft1i=;11i****+*iiii*iictfCti=
+            =t1cc=~itfft11111ttfttf1fLLLLLLLLLCCf+ :;------~~~~-;;::;;---~----;,1CCfLCCCCCGCCGGC=tLLLLLCLLLLLfffffffffftc*~;tc*++***iiiiiciiiictL1+,
+            tf1ci+;*tffftttt1ttftt1ctffLLLLfLLLLt-.:;----~-~~~~;;::;;;;-------::LLLLLCLCCCCCCGC*1LLLLLLCLLLfLLfftffffLf1i+;+ci+***iciii*iiiiiii*itc-
+           ;Lf1ci*;=1fffttttttftttt1tfLLLLLCLffL1:,;----~~~~--;;:::;;;;------;,*LLfffLLCCCCCGCc*fLLCCLLfLLfffttfftfffftc*-,ci*+*i*iiiii***iicccc*+ic
+           *Lft1i*~;tffffffffffffff1tLLLLLfLffLLc,,;-----~---;;::;;;;;-----;;:,LLLfffLCCLCCCCf=tfCCLLLLLLfft1c11tffLLf1i=:;c****i*iciici*iiicccc1c*=i
+           fftt1i*=:cffftttfttfttffttfCLLfLLftLLc.:---------;;:::;;;;;;----::,~LLLLfLLLCCCGGC=1ffLCLLLLLLff1ciic1tfLLtc+-.=i*iiciicccciiii*ic1cictf1**
+          .Lf1cii*=;*LffffffftfftffttLLffLLLLLLfi ;------;;;:::;;;;;;;;;-;;::.1LffffLLCGGGGC*itfLfLfLffft11i*+iiif1ttc*=;.+ii*icicciii*i*****11cic1LL+
+          -Lt1c*++=~+tttttttttttffft1fLfLLLLLfLf*.;-----;;:::::;;;--;;;;-;;::;fLftffLCCCCGCt=1tttfftttt1ci***i*ic*=11c*=:,=*iicc1c******i*++=*it11c1ft
+          +Lt1cc*+=~=11tttt1tttttttt1LCLLLLfffCf+.;-----;:;;;;;-----;;---:::,*LLfffLLCCGGCL~iccc1ciii*+++++***ccii*t1i*=,:~*111ci**iiiicic**=+*i1tcicf
+          cf11cii+=~~1c1tttttttttftt1LCCCLLLLCft=,;;-;;;::;-----;;;;;;;;;:::,fLLffLLfLLCCL=c111t11cicii*i**iii****it1i*=.:+ccii**icciic1cci**+++itt1ic
+          ft1ci**+=~-c111t11ttfftftt1LLCCLLLLLLt~,;;;;;;;;---;--;;::;;-;;:,,~fLfffLLLCCLLi*1ttttt1cii*++*icccc11cctt1i*~.;=*iiiiiiiiiiccccii**+++*cttc
+         ;Lt11i**+++=ic1111tttfftftt1fLCCLLLLfC1-,;;;;;;--------;;;;;---;:,,iLLfffLLLCCft~cc1c111c1111111ccccccccc1t1i+~.,+iccciiiciiiciccc1ii*+=~+itf
+         *Lftt1ci**=;=111c1ttfffffft1tLCLCLLLLL1-,:;;;---~-------;--;---:::.tLLLffLCCCLL~*ctftt1111cciii***iccccc1cci*+~ :+iccciiiiiii*iiic1ci*=++=+cf
+         fLttt11ci+~-~ttc111tffLffftt1LCLCCLLLL1;,:;;--------~----;;;--;::,;LLLfLLCCCLLi-ic111111c11c1ccicc11ccc111ci*+- :+*iiiiiii1ciiiiccc1ci**++**i
+        .GLtt11ci*+~--ccct1tffLfftfftcCCLCCLCLfc;,:;--------;---;-----;:,,.*fLLLLLCCGLf:=icctt1t1111ciiiiicccccccccii*+- :*ccccccccc1icccciic11c*++*ic
+        ~Cfttci***+~~-+c111tfffffffft1CCCCLLLLfc:,,;----;;------------;:,. 1fCCCLCCGCC;-+iic11111111ccccccccccccccii**+- :~ic111111t1ccciiiii111i*=+ii
+        1L1c*++++**=~;-1c11tfLLffffftcfCCCCLLLfi, ,;--;;;;;;;;;---;---;:,.,LLLLLCCCCL+;=+*ic111cc1c1cccccc1ciccciii***=; :-+*ccc1ttt11cccciiiic1ci+=+*
+        Lc**+++**ii=-,.c1ttfLLfffftttcfCCLLLLLfi, .:;-;;;;;;----------:,..-LLLLLLCGCc:-+**iic1ccccciiiiiiicciiiiiii**+=; ,-+iccc1tt1t1ccicii**i1t1i+==
+       +c++*ctfLf1+-:..=tttLLLLffftt1c1CCLLLLLt*. .:;;;;;;;----;;----;:,. *fLLLLCGCC:;=*iicic1ccccciccciicciiiiiii**i*=; .-+cc1c1ttttt11ccii*iic1fti++
+       tiifCGGCt*~;,.  .c1tfLLLLfttt1ccCGCLLLLt*  .;;;;;;----;;;-----;:,. tLLLLLCCC-;~iiiiccccccccciiciccciiiici*iiiii=-  -+*cccctttffft11ciiiic1fLtc*
+       CC000L1+;,.......~11ffLLffftt1ccfCCLLLCt+  .:;:::;;;-;-;------:,, ,LLLLLCCC=:-+iiiiiiccciiiicciciciiiiiiiiiiii*=-  :+cci**ic1tfffft1cici11tfLt1
+      ;0GLtc*****+~:,::::c1tffLffftt1cctLCLCLCt~  .:;;::;;;;;;;;-;--;:,, =fLLLLLCi:;~iiiiciicciiiciiiiiiiiiiiiii*iiii*+-.  -*ccii***c1tffft11c111ttLLf
+     i1=-;::::::;;~+i*+=~*1tfffffftt1cccLCLLCC1-  ,:::;;;;;;;;;;;;--;:,. cfLLLLL1:;-*iiiiiicicciiiiiii****iiiiii*i****+~,   ~ic11ci*+*ic1ttft11111tfLL
+    ~~:~==~~----~=*ii+~;,:ttfftftttt1ciifCCCCLi:  ,:::;:;;;;;;;;-;--;,,  ffLLLLt;;;=iciii**iccciiiciii*******i***i*i*++-,   :=i1tt1cii*+*iic111111ttfL
+    ;=1CLCCLLCCCLt*-,    .ttffftt111ciictLGCCf*.  ,:::::;;;;;;;;;--;:,. ;fLLCfL-;;~iccciii**iiiiiicii**+++*******i***+=-,..,:-~*1tfft1ci*+++*iiic1tffL
+     f000GGGLf1i=;;-~~----1ffffft11cciiccLCCCf+   ::::::::::;;;;;--:,,  +fLLfL~;-~+i11cci*******iiii***+++***********+=-:.,::-~~+i1ffLLtci*+==++**c1tf
+    cti=~;:,,::,...,,:-:,.cffttftt1cciicifCLL1-   :;;:::::::::::;;;:,,  1LLfL=;--=*i1c1ci**++++**i*i***+*++****i*****+=~:..::-=++=+*1tffftc*+===+++*i1
+    **i=:~tCLtci**11i~:.. *fttttt11ci*icctLLfi,   ,::::::::::::;;;;:,, ,fLLf*;-~~=*c111ci**+++++**iiiii+*******i****++=~;..:,;iccci***c1tft11ci****+**
+    L+:*C#f*~~*1LGCti+~-:.=ffffft11ii*icccfLf+    ,:;::::::::::::;:::. ~Lffi;-~~=+*i111cci***+****iiii**************++=~;..,.,*tffLftciictCGGCLftt1cci
+   ;CtCfG#LLL88000GLti~:,:~fffft11cc**iccitLt~    ,::::::::::::::;:::  iffi-~==~=+ic111ccii****iiiiii**+*+**+*****+++==~;,.... -*1LCCCLtffLG00800GGLLt
+    1t+;cc~+G80880GCCCLti~-tffftt1cii*iicicL1:    ,::::::::::::::;::,  1f1-~====+*cc11c1ci*****ii******+++++++***++===~~;,,..  .:~iccii*++++**c1tLC000
+   ,1-,*i+fCLftcci*icfLLti~tttttt11ii*icciiL*,    ::::::::::::::::::, ,tt-~+++==*icc1c1ccii***********++++++++++++===~~-;:,.. ;*+-:.  .:-~-:,,,,,:-=*c
+   :~:=CCL1*+++*c1fGGGGf11+1tttt111ii*iiii*ic,    ::::::::::::::::::. ~f=~+++===*cccccccii****+*******+++++++*+++==~~~--:,..  =1fLCCLtc*~;~ifLfc=;,..,
+    ~~GCt*=~+cLG00000GCCfi~*ttt11ccii*iiii**t-    ,::::::::::::::::,  ci~++++==+iccccccciii*********++++==++++++====~~-;,.. ;fGGGGCLLLCG0Gt==*LLLCCt*;
+     1C1+=*cC0000GCG0#%#####80GL1cci*iiiii*+*i    :::::::::::::::::,  t~=+++===*iccccciciii*********+===++**+++====~~-;:,.;t00000800GCCLCCCGc~,:~if00f</pre></div>
+    </figure>
+  </div>
+
+  <section id="about">
+    <p class="cmd"><b>$</b> <span>cat about.md</span></p>
+    <h2>About</h2>
+    <div class="about">
+      <div>
+        <p>I love open source and WordPress, and contributing to community projects is where I feel at home. As a WordPress Core contributor, I help build the platform that runs more than 40% of the web.</p>
+        <p>My client work runs from a single Gutenberg block up to 90-page enterprise sites with complex editing workflows. I scope honestly, explain things in plain language, choose WordPress-first solutions and hand over clean, documented code.</p>
+        <ul class="facts">
+          <li><span>based</span> Mumbai, India</li>
+          <li><span>now</span> Freelance + building at Devxpertlabs</li>
+          <li><span>community</span> WordCamp speaker · KubeCon India</li>
+        </ul>
+      </div>
+      <blockquote>I believe great websites should be fast, accessible and easy to manage. That's the bar I try to hit on every project, big or small.</blockquote>
+    </div>
+  </section>
+
+  <section id="services">
+    <p class="cmd"><b>$</b> <span>wp plugin list --status=active --fields=name,status,description</span></p>
+    <h2>Services</h2>
+    <div class="table-scroll">
+      <div class="cli" role="table" aria-label="Services">
+        <div class="cli-row cli-head" role="row"><span role="columnheader">name</span><span role="columnheader">status</span><span role="columnheader">description</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">wordpress-development</span><span class="s" role="cell">active</span><span class="d" role="cell">Custom themes, full-site editing and editor-friendly workflows.</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">custom-plugins</span><span class="s" role="cell">active</span><span class="d" role="cell">Purpose-built plugins, Gutenberg blocks and REST API endpoints.</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">ai-integrations</span><span class="s" role="cell">active</span><span class="d" role="cell">Chatbots, content assistants and features powered by large language models (LLMs).</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">automation-workflows</span><span class="s" role="cell">active</span><span class="d" role="cell">n8n and API automations that connect WordPress to the rest of your tools.</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">performance</span><span class="s" role="cell">active</span><span class="d" role="cell">Core Web Vitals, caching and image optimization.</span></div>
+        <div class="cli-row" role="row"><span class="n" role="cell">maintenance-support</span><span class="s" role="cell">active</span><span class="d" role="cell">Updates, monitoring and ongoing developer support.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <p class="cmd"><b>$</b> <span>composer show --tree</span></p>
+    <h2>Stack</h2>
+    <div class="stack">
+      <div><h3>backend</h3><p>PHP 8 · MySQL · WordPress Core · REST API · Headless WordPress · WooCommerce</p></div>
+      <div><h3>frontend</h3><p>TypeScript · JavaScript · Vue.js · Nuxt.js · Tailwind CSS · Gutenberg Blocks · Elementor</p></div>
+      <div><h3>ai + automation</h3><p>OpenAI API · RAG architecture · n8n · AI chatbots · content pipelines</p></div>
+      <div><h3>devops + tooling</h3><p>Docker · Git/GitHub · Composer · PHPUnit · PHPCS · cPanel</p></div>
+    </div>
+  </section>
+
+  <section id="work">
+    <p class="cmd"><b>$</b> <span>ls -l ~/projects</span></p>
+    <h2>Selected work</h2>
+    <div class="work">
+      <article class="proj"><span class="type">Enterprise WordPress</span><h3>90+ page corporate website</h3><p>A large WordPress site with custom Gutenberg blocks, content in several languages and an editing workflow the team actually enjoys.</p></article>
+      <article class="proj"><span class="type">AI integration</span><h3>AI chatbot integration</h3><p>An AI assistant on a WordPress site with lots of content. It tailors answers to each user's role and logs every conversation.</p></article>
+      <article class="proj"><span class="type">Custom plugin</span><h3>Business automation plugin suite</h3><p>A set of plugins for capturing leads, managing workflows and reporting, which saves hours of manual work every week.</p></article>
+      <article class="proj"><span class="type">Automation</span><h3>n8n workflow automation</h3><p>Automations from start to finish that connect WordPress forms to the CRM, email and Slack.</p></article>
+      <article class="proj"><span class="type">Performance</span><h3>Core Web Vitals rescue</h3><p>Fixed a site that was failing Core Web Vitals, using caching, smarter image handling and a leaner theme.</p></article>
+      <article class="proj"><span class="type">Open source</span><h3>WordPress Core contributions</h3><p>Code, bug fixes and testing credited in the 7.0 release and in ongoing development cycles. <a href="https://profiles.wordpress.org/anupkankale/" target="_blank" rel="noopener">profile ↗</a></p></article>
+    </div>
+  </section>
+
+  <section id="opensource">
+    <p class="cmd"><b>$</b> <span>git log --oneline --author="anupkankale"</span></p>
+    <h2>Open source</h2>
+    <ul class="log">
+      <li><span class="h">7f1a2c0</span><span>Credited contributor: WordPress 7.1 "Mary Lou"</span></li>
+      <li><span class="h">70e9b41</span><span>Credited contributor: WordPress 7.0 "Armstrong"</span></li>
+      <li><span class="h">d3v8x10</span><span>Released DevXpert Lead Dashboard, a free GPL plugin</span></li>
+      <li><span class="h">130be3e</span><span>Contributed to NudgeBee v1.3.0</span></li>
+      <li><span class="h">c4a7b07</span><span>Built <a href="https://github.com/Anupkankale/chatbot" target="_blank" rel="noopener">chatbot</a>, a lightweight WordPress plugin that captures leads</span></li>
+      <li><span class="h">8n8a5e2</span><span>Built <a href="https://github.com/Anupkankale/wp-automation-with-n8n" target="_blank" rel="noopener">wp-automation-with-n8n</a>, an AI pipeline that writes and publishes SEO-ready content</span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <p class="cmd"><b>$</b> <span>./contact.sh</span></p>
+    <h2>Let's build something</h2>
+    <div class="contact">
+      <div>
+        <p class="muted" style="margin:0 0 16px;max-width:48ch">Whether you need a new site, a custom plugin or AI features for the WordPress site you already have, send me a short note about the project.</p>
+        <div class="mail">
+          <code id="email">anupkankaleak47@gmail.com</code>
+          <button class="copy" id="copy-email" type="button">copy</button>
+        </div>
+        <p class="muted" style="margin:0;font-size:12px" id="copy-status" aria-live="polite">Mumbai, India · open to remote work</p>
+      </div>
+      <ul class="links">
+        <li><span>linkedin</span><a href="https://in.linkedin.com/in/anupkankale" target="_blank" rel="noopener">in/anupkankale</a></li>
+        <li><span>github</span><a href="https://github.com/Anupkankale" target="_blank" rel="noopener">@Anupkankale</a></li>
+        <li><span>wordpress</span><a href="https://profiles.wordpress.org/anupkankale/" target="_blank" rel="noopener">profiles.wordpress.org</a></li>
+        <li><span>gravatar</span><a href="https://gravatar.com/anupkankale" target="_blank" rel="noopener">gravatar.com/anupkankale</a></li>
+        <li><span>web</span><a href="https://anupkankale.com" target="_blank" rel="noopener">anupkankale.com</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Anup Kankale</span>
+  <span>// rendered in plain text · no images were harmed</span>
+</footer>
+
+<script>
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('.fit'));
+  function fit(){
+    boxes.forEach(function(box){
+      var pre=box.firstElementChild;
+      pre.style.transform='none';
+      var w=pre.scrollWidth,h=pre.scrollHeight,avail=box.clientWidth;
+      if(!w||!avail)return;
+      var s=avail/w;
+      pre.style.transform='scale('+s+')';
+      box.style.height=Math.ceil(h*s)+'px';
+    });
+  }
+  fit();
+  if(window.ResizeObserver){var ro=new ResizeObserver(fit);boxes.forEach(function(b){ro.observe(b)});}
+  else window.addEventListener('resize',fit);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+})();
+document.getElementById('copy-email').addEventListener('click', function(){
+  var t=document.getElementById('email').textContent, s=document.getElementById('copy-status'), b=this;
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var x=getSelection();x.removeAllRanges();x.addRange(r);s.textContent='Selected. Press Ctrl/⌘+C to copy.';}
+  try{
+    navigator.clipboard.writeText(t).then(function(){b.textContent='copied';s.textContent='Email copied to clipboard.';setTimeout(function(){b.textContent='copy'},1800)},sel);
+  }catch(e){sel()}
+});
+</script>
