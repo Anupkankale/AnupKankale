@@ -1,4 +1,9 @@
- <title>Anup Kankale</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anup Kankale</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap">
@@ -83,7 +88,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 
 /* ---------- sections ---------- */
 section{padding-block:44px;border-top:1px dashed var(--line)}
-.cmd{margin:0 0 22px;font-size:13px;color:var(--muted)}
+.cmd{margin:0 0 22px;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
 .cmd b{color:var(--ok);font-weight:500}
 .cmd span{color:var(--text)}
 h2{
@@ -157,11 +162,32 @@ footer{border-top:1px dashed var(--line);padding-block:26px 40px;color:var(--mut
   .about,.contact{grid-template-columns:1fr}
 }
 @media (max-width:560px){
-  .cli-row{grid-template-columns:1fr;gap:2px}
-  .cli-head{display:none}
+  body{font-size:14px}
+  .bar{padding-block:8px}
+  .bar nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:0 16px;width:100%;font-size:13.5px;padding-block:4px}
+  .bar nav::-webkit-scrollbar{display:none}
+  .bar nav a{white-space:nowrap;padding-block:4px}
   .prompt{display:none}
+  .hero{padding-block:28px 28px;gap:32px}
+  .fit.name{max-width:100%}
+  .role{margin-top:20px}
+  .cta .btn{flex:1 1 140px;text-align:center;padding-block:12px}
+  section{padding-block:32px}
+  h2{margin-bottom:16px}
+  .cli-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 14px}
+  .cli-head{display:none}
+  .cli-row .d{grid-column:1/-1}
+  .cli-row .s{font-size:12px}
+  .proj{padding:16px}
+  .log li{grid-template-columns:1fr;gap:0}
+  .links li span{min-width:10ch}
+  blockquote{padding:14px 16px}
+  footer{flex-direction:column}
 }
 </style>
+</head>
+<body>
+
 
 <header class="bar">
   <div class="wrap">
@@ -428,3 +454,6 @@ document.getElementById('copy-email').addEventListener('click', function(){
   }catch(e){sel()}
 });
 </script>
+
+</body>
+</html>
